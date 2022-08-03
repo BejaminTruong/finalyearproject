@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro::wght@400;600');
+$board-bg-color: #0079bf;
+
+body{
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.trelloContainer {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 40px 50px 1fr;
+  background-color: #0079bf;
+}
