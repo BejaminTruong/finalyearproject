@@ -42,4 +42,15 @@ body {
     outline: none;
     box-shadow: none;
   }
+  .trello-content-editable{
+    background-color: inherit;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    &:focus{
+      background-color: white;
+      border: 1px solid $input-border-color;
+    }
+  }
 }
