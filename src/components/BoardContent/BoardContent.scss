@@ -55,14 +55,5 @@
         border-color: $input-border-color;
       }
     }
-    .cancel-new-column {
-      margin-left: $gap;
-      font-size: 18px;
-      color: $alert-danger;
-      cursor: pointer;
-      &:hover {
-        color: darken($alert-danger, 10);
-      }
-    }
   }
 }

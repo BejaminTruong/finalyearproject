@@ -16,11 +16,18 @@ import {
   Button,
 } from "react-bootstrap";
 const BoardContent = () => {
-  const [board, setBoard] = useState({});
-  const [columns, setColumns] = useState([]);
-  const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
-  const [newColumnTitle, setNewColumnTitle] = useState("");
   const newColumnInputRef = useRef(null);
+
+  const [board, setBoard] = useState({});
+
+  const [columns, setColumns] = useState([]);
+
+  const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
+  const toggleNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm);
+
+  const [newColumnTitle, setNewColumnTitle] = useState("");
+  const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value);
+
 
   useEffect(() => {
     const boardFromDB = initialData.boards.find(
@@ -37,10 +44,6 @@ const BoardContent = () => {
     newColumnInputRef?.current?.focus();
     newColumnInputRef?.current?.select();
   }, [openNewColumnForm]);
-
-  if (_.isEmpty(board)) {
-    return <div className="not-found">Board not found!</div>;
-  }
 
   const onColumnDrop = (dropResult) => {
     let newColumns = [...columns];
@@ -62,12 +65,6 @@ const BoardContent = () => {
       currentColumn.cardOrder = currentColumn.cards.map((i) => i.id);
       setColumns(newColumns);
     }
-  };
-
-  const toggleNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm);
-
-  const onNewColumnTitleChange = (e) => {
-    setNewColumnTitle(e.target.value);
   };
 
   const addNewColumn = () => {
@@ -117,6 +114,10 @@ const BoardContent = () => {
     setBoard(newBoard);
   };
 
+  if (_.isEmpty(board)) {
+    return <div className="not-found">Board not found!</div>;
+  }
+
   return (
     <div className="board-content">
       <Container
@@ -165,10 +166,7 @@ const BoardContent = () => {
               <Button variant="success" size="sm" onClick={addNewColumn}>
                 Add column
               </Button>
-              <IoTrash
-                className="cancel-new-column"
-                onClick={toggleNewColumnForm}
-              />
+              <IoTrash className="cancel-icon" onClick={toggleNewColumnForm} />
             </Col>
           </Row>
         )}
