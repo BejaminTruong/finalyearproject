@@ -14,43 +14,53 @@ body {
   overflow: hidden;
   background-color: $board-bg-color;
   color: $app-main-text-color;
-  .icon{
+  .icon {
     font-size: 14px;
     margin: 0 3px;
   }
-  
-  .bootstrap-trello-container{
+
+  .bootstrap-trello-container {
     margin: 0 15px;
     padding: 0;
   }
-  
-  textarea:focus, 
-  textarea.form-control:focus, 
-  input.form-control:focus, 
-  input[type=text]:focus, 
-  input[type=password]:focus, 
-  input[type=email]:focus, 
-  input[type=number]:focus, 
-  [type=text].form-control:focus, 
-  [type=password].form-control:focus, 
-  [type=email].form-control:focus, 
-  [type=tel].form-control:focus, 
+
+  textarea:focus,
+  textarea.form-control:focus,
+  input.form-control:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  [type="text"].form-control:focus,
+  [type="password"].form-control:focus,
+  [type="email"].form-control:focus,
+  [type="tel"].form-control:focus,
   [contenteditable].form-control:focus {
     box-shadow: none;
+    border: 1px solid $input-border-color;
   }
-  .btn:focus, .btn:active{
+  .btn:focus,
+  .btn:active {
     outline: none;
     box-shadow: none;
   }
-  .trello-content-editable{
+  .trello-content-editable {
     background-color: inherit;
     border: none;
     font-size: inherit;
     font-weight: inherit;
     cursor: pointer;
-    &:focus{
+    &:focus {
       background-color: white;
-      border: 1px solid $input-border-color;
+    }
+  }
+  .cancel-icon {
+    margin-left: $gap;
+    font-size: 18px;
+    color: $alert-danger;
+    cursor: pointer;
+    &:hover {
+      color: darken($alert-danger, 10);
     }
   }
 }

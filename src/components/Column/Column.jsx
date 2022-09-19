@@ -1,24 +1,44 @@
 import Card from "components/Card/Card";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Column.scss";
 import { mapOrder } from "utilities/sorts";
 import { Container, Draggable } from "react-smooth-dnd";
 import { BsPlusLg } from "react-icons/bs";
-import { Dropdown, Form } from "react-bootstrap";
+import { IoTrash } from "react-icons/io5";
+import { Button, Dropdown, Form } from "react-bootstrap";
 import ConfirmModal from "components/Common/ConfirmModal";
 import { MODAL_ACTION_CONFIRM } from "utilities/constants";
 import {
   saveContentAfterPressEnter,
   selectAllInlineText,
 } from "utilities/contentEditable";
+import _ from "lodash";
 
 const Column = ({ column, onCardDrop, onUpdateColumn }) => {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [columnTitle, setColumnTitle] = useState("");
+  const cards = mapOrder(column.cards, column.cardOrder, "id");
 
-  const handleColumnTitleChange = (e) => {
-    setColumnTitle(e.target.value);
-  };
+  const [columnTitle, setColumnTitle] = useState("");
+  const handleColumnTitleChange = (e) => setColumnTitle(e.target.value);
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const toggleConfirmModal = () => setShowConfirmModal(!showConfirmModal);
+
+  const [openNewCardForm, setOpenNewCardForm] = useState(false);
+  const toggleNewCardForm = () => setOpenNewCardForm(!openNewCardForm);
+
+  const newCardTextareaRef = useRef(null);
+
+  const [newCardTitle, setNewCardTitle] = useState("");
+  const onNewCardTitleChange = (e) => setNewCardTitle(e.target.value);
+
+  useEffect(() => {
+    setColumnTitle(column.title);
+  }, [column.title]);
+
+  useEffect(() => {
+    newCardTextareaRef?.current?.focus();
+    newCardTextareaRef?.current?.select();
+  }, [openNewCardForm]);
 
   const handleColumnTitleBlur = () => {
     console.log(columnTitle);
@@ -29,13 +49,6 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
     onUpdateColumn(newColumn);
   };
 
-  useEffect(() => {
-    setColumnTitle(column.title);
-  }, [column.title]);
-
-  const cards = mapOrder(column.cards, column.cardOrder, "id");
-
-  const toggleConfirmModal = () => setShowConfirmModal(!showConfirmModal);
   const onConfirmModalAction = (type) => {
     if (type === MODAL_ACTION_CONFIRM) {
       const newColumn = {
@@ -46,6 +59,27 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
     }
     console.log(type);
     toggleConfirmModal();
+  };
+
+  const addNewCard = () => {
+    if (!newCardTitle) {
+      newCardTextareaRef.current.focus();
+      return;
+    }
+    const newCardToAdd = {
+      id: Math.random().toString(36).substr(2, 5),
+      boardId: column.boardId,
+      columnId: column.id,
+      title: newCardTitle.trim(),
+      cover: null,
+    };
+
+    let newColumn = _.cloneDeep(column);
+    newColumn.cards.push(newCardToAdd);
+    newColumn.cardOrder.push(newCardToAdd.id);
+    onUpdateColumn(newColumn);
+    setNewCardTitle("");
+    toggleNewCardForm();
   };
 
   return (
@@ -74,7 +108,7 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
             />
 
             <Dropdown.Menu>
-              <Dropdown.Item>Add card...</Dropdown.Item>
+              <Dropdown.Item onClick={toggleNewCardForm}>Add card...</Dropdown.Item>
               <Dropdown.Item onClick={toggleConfirmModal}>
                 Remove column...
               </Dropdown.Item>
@@ -108,12 +142,37 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
             </Draggable>
           ))}
         </Container>
+        {openNewCardForm && (
+          <div className="add-new-card-area">
+            <Form.Control
+              size="sm"
+              as="textarea"
+              rows={3}
+              placeholder="Enter a title for this card..."
+              className="textarea-enter-new-card"
+              ref={newCardTextareaRef}
+              value={newCardTitle}
+              onChange={onNewCardTitleChange}
+              onKeyDown={(event) => event.key === "Enter" && addNewCard()}
+            />
+          </div>
+        )}
       </div>
       <footer>
-        <div className="footer-action">
-          <BsPlusLg className="icon" />
-          Add another card
-        </div>
+        {openNewCardForm && (
+          <div className="add-new-card-actions">
+            <Button variant="success" size="sm" onClick={addNewCard}>
+              Add card
+            </Button>
+            <IoTrash className="cancel-icon" onClick={toggleNewCardForm} />
+          </div>
+        )}
+        {!openNewCardForm && (
+          <div className="footer-action" onClick={toggleNewCardForm}>
+            <BsPlusLg className="icon" />
+            Add another card
+          </div>
+        )}
       </footer>
       <ConfirmModal
         show={showConfirmModal}
