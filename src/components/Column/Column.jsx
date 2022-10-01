@@ -15,7 +15,7 @@ import {
 import _ from "lodash";
 
 const Column = ({ column, onCardDrop, onUpdateColumn }) => {
-  const cards = mapOrder(column.cards, column.cardOrder, "id");
+  const cards = mapOrder(column.cards, column.cardOrder, "_id");
 
   const [columnTitle, setColumnTitle] = useState("");
   const handleColumnTitleChange = (e) => setColumnTitle(e.target.value);
@@ -69,14 +69,14 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
     const newCardToAdd = {
       id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
-      columnId: column.id,
+      columnId: column._id,
       title: newCardTitle.trim(),
       cover: null,
     };
 
     let newColumn = _.cloneDeep(column);
     newColumn.cards.push(newCardToAdd);
-    newColumn.cardOrder.push(newCardToAdd.id);
+    newColumn.cardOrder.push(newCardToAdd._id);
     onUpdateColumn(newColumn);
     setNewCardTitle("");
     toggleNewCardForm();
@@ -125,7 +125,7 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
       <div className="card-list">
         <Container
           groupName="col"
-          onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
+          onDrop={(dropResult) => onCardDrop(column._id, dropResult)}
           getChildPayload={(index) => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
