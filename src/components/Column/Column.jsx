@@ -13,8 +13,9 @@ import {
   selectAllInlineText,
 } from "utilities/contentEditable";
 import _ from "lodash";
+import { createNewCard, updateColumn } from "actions/ApiCall";
 
-const Column = ({ column, onCardDrop, onUpdateColumn }) => {
+const Column = ({ column, onCardDrop, onUpdateColumnState }) => {
   const cards = mapOrder(column.cards, column.cardOrder, "_id");
 
   const [columnTitle, setColumnTitle] = useState("");
@@ -41,12 +42,16 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
   }, [openNewCardForm]);
 
   const handleColumnTitleBlur = () => {
-    console.log(columnTitle);
-    const newColumn = {
-      ...column,
-      title: columnTitle,
-    };
-    onUpdateColumn(newColumn);
+    if (columnTitle !== column.title) {
+      const newColumn = {
+        ...column,
+        title: columnTitle,
+      };
+      updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+        updatedColumn.cards = newColumn.cards;
+        onUpdateColumnState(updatedColumn);
+      });
+    }
   };
 
   const onConfirmModalAction = (type) => {
@@ -55,7 +60,9 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
         ...column,
         _destroy: true,
       };
-      onUpdateColumn(newColumn);
+      updateColumn(newColumn._id, newColumn).then((updatedColumn) => {
+        onUpdateColumnState(updatedColumn);
+      });
     }
     console.log(type);
     toggleConfirmModal();
@@ -67,19 +74,19 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
       return;
     }
     const newCardToAdd = {
-      id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
       columnId: column._id,
       title: newCardTitle.trim(),
-      cover: null,
     };
 
-    let newColumn = _.cloneDeep(column);
-    newColumn.cards.push(newCardToAdd);
-    newColumn.cardOrder.push(newCardToAdd._id);
-    onUpdateColumn(newColumn);
-    setNewCardTitle("");
-    toggleNewCardForm();
+    createNewCard(newCardToAdd).then((card) => {
+      let newColumn = _.cloneDeep(column);
+      newColumn.cards.push(card);
+      newColumn.cardOrder.push(card._id);
+      onUpdateColumnState(newColumn);
+      setNewCardTitle("");
+      toggleNewCardForm();
+    });
   };
 
   return (
@@ -108,7 +115,9 @@ const Column = ({ column, onCardDrop, onUpdateColumn }) => {
             />
 
             <Dropdown.Menu>
-              <Dropdown.Item onClick={toggleNewCardForm}>Add card...</Dropdown.Item>
+              <Dropdown.Item onClick={toggleNewCardForm}>
+                Add card...
+              </Dropdown.Item>
               <Dropdown.Item onClick={toggleConfirmModal}>
                 Remove column...
               </Dropdown.Item>
