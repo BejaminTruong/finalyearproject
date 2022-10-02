@@ -14,7 +14,13 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
-import { createNewColumn, fetchBoardDetails } from "actions/ApiCall";
+import {
+  createNewColumn,
+  fetchBoardDetails,
+  updateBoard,
+  updateCard,
+  updateColumn,
+} from "actions/ApiCall";
 const BoardContent = () => {
   const newColumnInputRef = useRef(null);
 
@@ -43,24 +49,46 @@ const BoardContent = () => {
   }, [openNewColumnForm]);
 
   const onColumnDrop = (dropResult) => {
-    let newColumns = [...columns];
+    let newColumns = _.cloneDeep(columns);
     newColumns = applyDrag(newColumns, dropResult);
 
-    let newBoard = { ...board };
+    let newBoard = _.cloneDeep(board);
     newBoard.columnOrder = newColumns.map((c) => c._id);
     newBoard.columns = newColumns;
 
     setColumns(newColumns);
     setBoard(newBoard);
+
+    updateBoard(newBoard._id, newBoard).catch(() => {
+      setColumns(columns);
+      setBoard(board);
+    });
   };
 
   const onCardDrop = (columnId, dropResult) => {
     if (dropResult.addedIndex !== null || dropResult.removedIndex !== null) {
       let newColumns = [...columns];
+      
       let currentColumn = newColumns.find((c) => c._id === columnId);
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
       currentColumn.cardOrder = currentColumn.cards.map((i) => i._id);
+
       setColumns(newColumns);
+
+      if (dropResult.addedIndex !== null && dropResult.removedIndex !== null) {
+        updateColumn(currentColumn._id, currentColumn).catch(() =>
+          setColumns(columns)
+        );
+      } else {
+        updateColumn(currentColumn._id, currentColumn).catch(() =>
+          setColumns(columns)
+        );
+        if (dropResult.addedIndex !== null) {
+          let currentCard = _.cloneDeep(dropResult.payload);
+          currentCard.columnId = currentColumn._id;
+          updateCard(currentCard._id, currentCard)
+        }
+      }
     }
   };
 
@@ -76,10 +104,10 @@ const BoardContent = () => {
     };
 
     createNewColumn(newColumnToAdd).then((column) => {
-      let newColumns = [...columns];
+      let newColumns = _.cloneDeep(columns);
       newColumns.push(column);
 
-      let newBoard = { ...board };
+      let newBoard = _.cloneDeep(board);
       newBoard.columnOrder = newColumns.map((c) => c._id);
       newBoard.columns = newColumns;
 
@@ -92,7 +120,7 @@ const BoardContent = () => {
 
   const onUpdateColumnState = (newColumnToUpdate) => {
     const columnIdToUpdate = newColumnToUpdate._id;
-    let newColumns = [...columns];
+    let newColumns = _.cloneDeep(columns);
     const columnIndexToUpdate = newColumns.findIndex(
       (i) => i._id === columnIdToUpdate
     );
@@ -102,7 +130,7 @@ const BoardContent = () => {
       newColumns.splice(columnIndexToUpdate, 1, newColumnToUpdate);
     }
 
-    let newBoard = { ...board };
+    let newBoard = _.cloneDeep(board);
     newBoard.columnOrder = newColumns.map((c) => c._id);
     newBoard.columns = newColumns;
 
