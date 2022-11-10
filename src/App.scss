@@ -12,7 +12,10 @@ body {
 .trelloContainer {
   height: 100vh;
   overflow: hidden;
-  background-color: $board-bg-color;
+  background-image: url("https://picsum.photos/5000/5000");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $app-main-text-color;
   .icon {
     font-size: 14px;

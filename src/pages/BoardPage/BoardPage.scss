@@ -1,0 +1,85 @@
+@import "_setting.scss";
+
+.boards-container {
+  height: 100vh;
+  max-width: 50%;
+  margin: auto;
+  h1 {
+    text-align: center;
+    color: white;
+  }
+  .boards-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    .item {
+      width: 200px;
+      height: 120px;
+      border-radius: 5px;
+      background-color: white;
+      padding: 10px;
+      background-image: url("https://picsum.photos/200/120");
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      opacity: 0.8;
+      &:hover {
+        opacity: 1;
+      }
+      &:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          142deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(42, 255, 249, 1) 20%,
+          rgba(58, 62, 57, 1) 40%,
+          rgba(157, 160, 6, 1) 60%,
+          rgba(182, 82, 5, 1) 80%,
+          rgba(255, 0, 0, 1) 100%
+        );
+      }
+    }
+    .enter-new-board {
+      width: 250px;
+      max-width: 250px;
+      line-height: 32px;
+      padding: 4px 10px;
+      background-color: $column-bg-color;
+      margin-left: $gap;
+      border-radius: $column-border-radius;
+      input.input-enter-new-board {
+        margin: 5px 0;
+        &:focus {
+          border-color: $input-border-color;
+        }
+      }
+    }
+  }
+  @media only screen and (min-width: 2560px) {
+    .boards-items {
+      .item {
+        width: 300px;
+        height: 200px;
+        background-image: url("https://picsum.photos/300/200");
+        font-size: 30px;
+      }
+    }
+  }
+  @media only screen and (max-width: 374px) {
+    h1 {
+      font-size: 20px;
+    }
+    .boards-items {
+      .item:last-child {
+        font-size: 14px;
+      }
+    }
+  }
+}

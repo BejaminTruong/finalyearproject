@@ -1,0 +1,21 @@
+@import "_setting.scss";
+
+.checklist-popover {
+  p {
+    font-weight: bold;
+  }
+  input{
+    margin: $gap 0;
+  }
+  button {
+    color: white;
+    border-radius: 5px;
+    border: none;
+    background-color: #007ec6;
+    padding: $gap;
+    width: 25%;
+    &:hover{
+        background-color: #026aa7;
+    }
+  }
+}

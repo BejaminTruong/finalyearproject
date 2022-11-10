@@ -1,0 +1,186 @@
+@import "_setting.scss";
+
+$card-button-color: #80808033;
+$card-button-color-hover: #80808066;
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  &-head {
+    display: flex;
+    align-items: center;
+    &-input {
+      margin-left: $gap * 3;
+      width: 100%;
+      &-actions {
+        margin-top: $gap;
+        display: flex;
+        align-items: center;
+        .btn-close {
+          position: unset !important;
+        }
+        .btn-save {
+          border: none;
+          background-color: #43a7ffce;
+          padding: 10px 20px;
+          width: 100px;
+          border-radius: 5px;
+          &:hover {
+            background-color: #43a7ff;
+          }
+        }
+      }
+    }
+    &-content {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        margin-bottom: 0;
+        margin-left: $gap * 2;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+        button {
+          padding: 10px !important;
+          width: 100px;
+          border-radius: 5px;
+          border: none;
+          background-color: $card-button-color;
+          &:first-child {
+            width: 150px;
+          }
+          &:hover {
+            background-color: $card-button-color-hover;
+          }
+        }
+      }
+    }
+  }
+  &-progress {
+    display: flex;
+    gap: $gap;
+    &-bar {
+      width: 100%;
+      background-color: rgba(128, 128, 128, 0.261);
+    }
+  }
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: $gap;
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: $card-button-color;
+    }
+    &-content {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      span {
+        flex: 95%;
+      }
+      .card-icon {
+        flex: 5%;
+        &:hover {
+          background-color: #8080805c;
+          border-radius: 5px;
+        }
+      }
+    }
+    &-input {
+      width: 100%;
+      &-actions {
+        margin-top: $gap;
+        display: flex;
+        align-items: center;
+        .btn-close {
+          position: unset !important;
+        }
+        .btn-save {
+          border: none;
+          background-color: #43a7ffce;
+          padding: 10px 20px;
+          width: 100px;
+          border-radius: 5px;
+          &:hover {
+            background-color: #43a7ff;
+          }
+        }
+      }
+    }
+  }
+  &-item-add-btn {
+    margin-left: $gap * 3;
+    width: 100px;
+    padding: 10px !important;
+    border-radius: 5px;
+    border: none;
+    background-color: #80808033;
+    &:hover {
+      background-color: #80808066;
+    }
+  }
+  &-item-add-input {
+    margin-left: $gap * 3;
+    width: 100%;
+    &-actions {
+      margin-top: $gap;
+      display: flex;
+      align-items: center;
+      .btn-close {
+        position: unset !important;
+      }
+      .btn-save {
+        border: none;
+        background-color: #43a7ffce;
+        padding: 10px 20px;
+        width: 100px;
+        border-radius: 5px;
+        &:hover {
+          background-color: #43a7ff;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 475px) {
+    .checklist-head-content {
+      flex-wrap: wrap;
+      p {
+        width: 100%;
+      }
+      &-btn {
+        width: 100% !important;
+        margin-left: 20px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .checklist-head-content {
+      width: 70%;
+      &-btn {
+        button {
+          font-size: smaller;
+        }
+      }
+    }
+    .checklist-item-content {
+      span {
+        flex: 90%;
+      }
+      .card-icon {
+        flex: 10%;
+      }
+    }
+  }
+}

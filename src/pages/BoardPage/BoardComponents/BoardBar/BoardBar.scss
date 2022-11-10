@@ -1,0 +1,90 @@
+@import "_setting.scss";
+
+.navbar-board {
+  height: $navbar-board-height;
+  padding-left: $gap;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.374);
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 20px;
+  gap: $gap;
+  .btn-add-member {
+    color: white;
+    background-color: rgba(0, 145, 255, 0.496);
+    padding: $gap;
+    border: none;
+    border-radius: 3px;
+    &:hover {
+      background-color: rgb(0, 145, 255);
+    }
+    flex: 10%;
+  }
+  .right-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 90%;
+    padding-right: $gap;
+    .trello-content-editable {
+      width: 200px;
+      background-color: rgba(255, 255, 255, 0.189);
+      color: white;
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.397);
+        border-color: transparent !important;
+      }
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.397);
+      }
+    }
+    .btn-show-menu {
+      color: white;
+      background-color: rgba(0, 145, 255, 0.496);
+      padding: $gap;
+      border: none;
+      border-radius: 3px;
+      &:hover {
+        background-color: rgb(0, 145, 255);
+      }
+    }
+  }
+  @media only screen and (max-width: 1315px){
+    .btn-add-member{
+      flex: 20%;
+    }
+    .right-content{
+      flex: 80%;
+    }
+  }
+  @media only screen and (max-width: 670px){
+    .btn-add-member{
+      flex: 30%;
+    }
+    .right-content{
+      flex: 70%;
+    }
+  }
+  @media only screen and (max-width: 485px){
+    .btn-add-member{
+      font-size: 14px;
+    }
+    .right-content{
+      font-size: 14px;
+      .trello-content-editable{
+        width: 50%;
+      }
+    }
+  }
+  @media only screen and (max-width: 485px){
+    .btn-add-member{
+      font-size: 12px;
+      flex: 35%;
+    }
+    .right-content{
+      font-size: 12px;
+      flex: 65%;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@import "_setting.scss";
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  position: relative;
+  padding: 0;
+  .drawer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    &-right {
+      display: flex;
+      align-items: center;
+      gap: $gap;
+      p {
+        margin: 0;
+      }
+      .userbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: gray;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+  .btn-del{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    border: none;
+    border-radius: 4px;
+    background-color: red;
+    font-size: 24px;
+    color: white;
+  }
+}

@@ -1,0 +1,30 @@
+@import "_setting.scss";
+
+.description {
+    &-head {
+      display: flex;
+      align-items: center;
+      margin-bottom: $gap;
+    }
+    &-content {
+      margin-left: $gap * 4;
+      &-actions {
+        margin-top: $gap;
+        display: flex;
+        align-items: center;
+        .btn-close {
+          position: unset;
+        }
+        .btn-save {
+          border: none;
+          background-color: #43a7ffce;
+          padding: 10px 20px;
+          width: 100px;
+          border-radius: 5px;
+          &:hover {
+            background-color: #43a7ff;
+          }
+        }
+      }
+    }
+  }

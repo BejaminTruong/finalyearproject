@@ -1,0 +1,233 @@
+@import "_setting.scss";
+
+$card-border-radius: 4px;
+$card-button-color: #80808033;
+$card-button-color-hover: #80808066;
+
+.card-item {
+  background-color: white;
+  padding: $gap;
+  border-radius: $card-border-radius;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: $gap;
+  position: relative;
+  img.card-cover {
+    display: block;
+    width: calc(100% + 2 * #{$gap});
+    margin: -$gap 0 $gap (-$gap);
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+  }
+  &-small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+    opacity: 0.7;
+    .small-icon {
+      font-size: 16px;
+    }
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .finished {
+      background-color: green;
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+    }
+    .overdue {
+      background-color: red;
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+    }
+  }
+  &-members{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: $gap;
+    .userbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      background-color: gray;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}
+.modal-dialog {
+  .modal-body {
+    background-color: $card-bg-color;
+    border-radius: 5px;
+    .btn-close {
+      position: absolute;
+      top: $gap;
+      right: $gap;
+    }
+    .card-icon {
+      font-size: 20px;
+    }
+    .card-title {
+      display: flex;
+      gap: $gap;
+      .card-icon {
+        margin-top: $gap;
+      }
+      &-input {
+        line-height: 12px;
+        width: 100%;
+        font-weight: bold;
+        font-size: 24px;
+      }
+      span {
+        font-size: 14px;
+        font-weight: normal;
+        color: gray;
+        padding-left: $gap;
+      }
+    }
+    .card-body {
+      display: flex;
+      margin-top: $gap * 3;
+      .userbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: gray;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      &-content {
+        display: flex;
+        flex-direction: column;
+        flex: 80%;
+        gap: $gap * 4;
+        padding-left: 5px;
+        padding-right: $gap * 2;
+        p:not(:first-child) {
+          margin-bottom: 0;
+          margin-left: $gap * 2;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .popover-show-content {
+          display: flex;
+          gap: $gap * 4;
+        }
+      }
+      &-features {
+        flex: 20%;
+        p {
+          margin-bottom: 0;
+        }
+        .feature-item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: $gap;
+          padding: 5px 10px;
+          background-color: $card-button-color;
+          border-radius: 5px;
+          margin-top: 10px;
+          cursor: pointer;
+          &:hover {
+            background-color: $card-button-color-hover;
+          }
+        }
+        .add-to-card {
+          display: flex;
+          flex-direction: column;
+          margin: 15px 0;
+        }
+      }
+    }
+
+    .trello-content-editable {
+      max-width: 90%;
+      background-color: inherit;
+      border: none;
+      font-size: inherit;
+      font-weight: inherit;
+      cursor: pointer;
+      &:focus {
+        background-color: white;
+      }
+    }
+    textarea:focus,
+    textarea.form-control:focus,
+    input.form-control:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    [type="text"].form-control:focus,
+    [type="password"].form-control:focus,
+    [type="email"].form-control:focus,
+    [type="tel"].form-control:focus,
+    [contenteditable].form-control:focus {
+      box-shadow: none;
+      border: 1px solid $input-border-color;
+    }
+    .btn:focus,
+    .btn:active {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  @media only screen and (min-width: 576px) {
+    max-width: 90%;
+  }
+  @media only screen and (min-width: 992px) {
+    max-width: 800px;
+  }
+  @media only screen and (min-width: 2560px){
+    max-width: 1200px;
+  }
+  @media only screen and (max-width: 840px) {
+    .card-body {
+      flex-direction: column;
+      .add-to-card,
+      .actions {
+        width: 30%;
+      }
+    }
+  }
+  @media only screen and (max-width: 690px) {
+    .popover-show-content {
+      flex-direction: column;
+      .date-container {
+        margin-left: 40px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .card-body {
+      .add-to-card,
+      .actions {
+        width: 100%;
+      }
+    }
+  }
+}
+.modal {
+  @media only screen and (max-width: 576px) {
+    padding-left: 0 !important;
+  }
+}

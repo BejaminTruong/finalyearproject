@@ -1,0 +1,31 @@
+@import "_setting.scss";
+
+.popover-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: $gap;
+  background-color: white;
+  box-shadow: -3px 3px 5px -1px #00000082;
+  border-radius: 5px;
+  width: 250px;
+  z-index: 99;
+  .btn-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+  .title {
+    text-align: center;
+    padding: $gap;
+    margin-bottom: $gap !important;
+    border-bottom: 1px solid gray;
+  }
+}
+.popover-responsive {
+  @media only screen and (max-width: 840px) {
+    top: unset;
+    left: 100%;
+    bottom: 0;
+  }
+}

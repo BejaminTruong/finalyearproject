@@ -1,0 +1,86 @@
+@import "_setting.scss";
+
+.activity {
+  &-head{
+    display: flex;
+    margin-bottom: $gap;
+  }
+  &-content {
+    .activity-input {
+      display: flex;
+      align-items: center;
+      gap: $gap;
+      margin-bottom: $gap;
+      .userbox {
+        margin-left: -8px !important;
+        width: 44px !important;
+      }
+      &-show {
+        width: 100%;
+        background-color: #ffff;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        border-top: none;
+        .form-input {
+          border-right: none !important;
+          border-left: none !important;
+          border-bottom: none !important;
+          &:focus {
+            border: none !important;
+          }
+        }
+        button {
+          margin: 10px 0 10px 10px;
+          border-radius: 5px;
+          border: none;
+          background-color: #43a7ff;
+          padding: $gap 0;
+          width: 60px;
+        }
+      }
+    }
+    .activity-comment {
+      display: flex;
+      gap: $gap;
+      p {
+        margin-bottom: 0;
+        font-weight: bold;
+      }
+      .userbox {
+        margin-left: -8px !important;
+        width: 44px !important;
+      }
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+        .comment-actions {
+          display: flex;
+          gap: $gap;
+          text-decoration: underline;
+          cursor: pointer;
+          margin-bottom: $gap;
+        }
+        &-actions {
+          display: flex;
+          align-items: center;
+          margin-bottom: $gap;
+          .btn-close {
+            position: unset;
+          }
+          .btn-save {
+            border: none;
+            background-color: #43a7ffce;
+            padding: 10px 20px;
+            width: 100px;
+            border-radius: 5px;
+            &:hover {
+              background-color: #43a7ff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

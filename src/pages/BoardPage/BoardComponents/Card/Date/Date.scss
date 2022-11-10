@@ -1,0 +1,44 @@
+@import "_setting.scss";
+
+.date-container {
+  .date-content {
+    display: flex;
+    gap: $gap;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+    }
+    &-checked {
+      input {
+        margin-top: 2px;
+      }
+    }
+    &-show {
+      position: relative;
+      background-color: #80808045;
+      padding: $gap;
+      border-radius: 5px;
+      &:hover {
+        background-color: #80808074;
+        .completed {
+          background-color: #008000e3;
+        }
+        .overdue {
+          background-color: #ff0000c6;
+        }
+      }
+      .date-status {
+        padding: 3px;
+        color: white;
+        margin-left: 5px;
+        border-radius: 5px;
+      }
+      .completed {
+        background-color: #00800097;
+      }
+      .overdue {
+        background-color: #ff000088;
+      }
+    }
+  }
+}

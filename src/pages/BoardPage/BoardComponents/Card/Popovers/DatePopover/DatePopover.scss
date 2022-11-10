@@ -1,0 +1,61 @@
+@import "_setting.scss";
+
+.rdrCalendarWrapper {
+  width: 100%;
+  .rdrDateDisplayWrapper {
+    display: none;
+  }
+  .rdrMonthAndYearWrapper {
+    padding-top: 0;
+  }
+  .rdrNextPrevButton {
+    margin: 0;
+  }
+  .rdrMonth {
+    width: 100%;
+  }
+}
+
+.popover-datepicker-content {
+  .action-date {
+    margin-bottom: $gap * 2;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    &-input {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      p {
+        font-weight: bold;
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: $gap;
+        input:not([type="checkbox"]) {
+          border-radius: 5px !important;
+          &::-webkit-inner-spin-button,
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+          }
+        }
+      }
+    }
+  }
+  .action-btn {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    button {
+      border: none;
+      border-radius: 5px;
+      padding: 5px 0;
+      &:first-child {
+        color: white;
+        background-color: #0084ff;
+      }
+    }
+  }
+}

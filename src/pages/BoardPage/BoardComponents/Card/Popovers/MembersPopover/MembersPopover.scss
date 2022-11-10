@@ -1,0 +1,29 @@
+@import "_setting.scss";
+
+.members-popover {
+  p {
+    padding: $gap 5px;
+    margin-left: unset !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+  }
+  &-content {
+    padding: $gap 0;
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      &:hover {
+        background-color: #80808015;
+      }
+      .item{
+        gap: $gap;
+        display: flex;
+      }
+    }
+  }
+}

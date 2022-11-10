@@ -9,7 +9,6 @@ const ConfirmModal = ({ title, content, show, onAction }) => {
       onHide={() => onAction("close")}
       backdrop="static"
       keyboard={false}
-      animation={false}
     >
       <Modal.Header closeButton>
         <Modal.Title className="h5">{HTMLReactParser(title)}</Modal.Title>

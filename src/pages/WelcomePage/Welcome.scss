@@ -1,0 +1,167 @@
+@import "_setting.scss";
+
+$button-hover-color: #0952cc;
+$button-color: #0065ff;
+
+.welcome-container {
+  height: 100vh;
+  background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255)) no-repeat;
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 30px;
+    cursor: pointer;
+    &-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      h1 {
+        margin: 0;
+        font-weight: 900;
+      }
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    &-button {
+      button {
+        padding: 10px 20px;
+        font-size: 15px;
+        border-radius: 10px;
+        outline: none;
+      }
+      :nth-child(1) {
+        background-color: transparent;
+        border: none;
+        color: $button-color;
+        text-decoration: underline;
+      }
+      :nth-child(2) {
+        background-color: $button-color;
+        color: white;
+        border-color: transparent;
+        &:hover {
+          background-color: $button-hover-color;
+        }
+      }
+    }
+    @media only screen and (min-width: 2560px) {
+      h1 {
+        font-size: 50px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+      button{
+        font-size: 24px;
+        padding: 20px 30px;
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      padding: 10px;
+      h1 {
+        font-size: 24px;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+      }
+      button {
+        padding: $gap;
+      }
+    }
+  }
+  .content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    &-left {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 700px;
+      h1 {
+        font-size: 50px;
+        font-weight: 700;
+      }
+      p {
+        font-size: 20px;
+        line-height: 30px;
+      }
+      button {
+        background-color: $button-color;
+        color: white;
+        border-color: transparent;
+        padding: 15px 30px;
+        font-size: 20px;
+        border-radius: 10px;
+        width: 300px;
+        &:hover {
+          background-color: $button-hover-color;
+        }
+      }
+    }
+    &-right {
+      img {
+        width: 400px;
+        height: 550px;
+      }
+    }
+    @media only screen and (min-width: 2560px) {
+      &-left{
+        h1 {
+          font-size: 70px;
+        }
+        p {
+          font-size: 30px;
+          line-height: 60px;
+        }
+        button{
+          font-size: 40px;
+          width: 100%;
+          padding: 30px 0;
+        }
+      }
+      img {
+        width: 700px;
+        height: 800px;
+      }
+    }
+    @media only screen and (max-width: 1024px) {
+      flex-direction: column-reverse;
+      img {
+        width: 400px;
+        height: 400px;
+      }
+      &-left {
+        width: 90%;
+        button{
+          width: 90%;
+          margin: auto;
+        }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      img {
+        width: 300px;
+        height: 272px;
+      }
+      &-left {
+        width: 80%;
+        height: 30%;
+        align-items: center;
+        h1 {
+          font-size: 20px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

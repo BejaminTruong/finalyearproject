@@ -1,0 +1,17 @@
+@import "_setting.scss";
+
+.members {
+  margin-left: $gap * 4;
+  &-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .add-member {
+      background-color: #8080807f !important;
+      &:hover {
+        background-color: #808080b3 !important;
+      }
+    }
+  }
+}

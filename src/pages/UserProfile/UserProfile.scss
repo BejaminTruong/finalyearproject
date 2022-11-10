@@ -1,0 +1,49 @@
+@import "_setting.scss";
+
+$button-color: #60ba4d;
+
+.form-container {
+  margin-top: 20px !important;
+  background-color: white;
+  display: flex;
+  border: 1px solid transparent;
+  width: 500px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  h1 {
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    .form-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        width: 100%;
+        border-radius: 10px;
+        background-color: $button-color;
+        padding: 10px 0;
+        border: none;
+        color: white;
+        font-size: larger;
+        font-weight: bold;
+      }
+    }
+    .form-input {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      input {
+        padding: 10px;
+      }
+    }
+  }
+  @media only screen and (max-width: 550px){
+    width: 80%;
+  }
+}
