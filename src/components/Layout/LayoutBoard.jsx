@@ -5,10 +5,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "features/userSlice";
 import Loading from "components/Common/Loading/Loading";
 
-export const loader = async () => {
-  // if (!localStorage.getItem("token")) return redirect("/login");
-};
-
 const LayoutBoard = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();

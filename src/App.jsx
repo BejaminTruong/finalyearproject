@@ -13,7 +13,6 @@ import Register from "pages/Auth/Register/Register";
 import LayoutBoard from "components/Layout/LayoutBoard";
 import Welcome from "pages/WelcomePage/Welcome";
 import LayoutAll from "components/Layout/LayoutAll";
-import { loader as layoutBoardLoader } from "./components/Layout/LayoutBoard";
 import { loadUser } from "actions/userActions";
 import { store } from "app/store";
 import UserProfile from "pages/UserProfile/UserProfile";
@@ -28,7 +27,6 @@ const router = createBrowserRouter([
         path: "boards",
         element: <LayoutBoard />,
         errorElement: <ErrorPage />,
-        loader: layoutBoardLoader,
         children: [
           { index: true, element: <BoardPage /> },
           {
