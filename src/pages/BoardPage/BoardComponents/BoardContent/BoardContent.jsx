@@ -72,6 +72,10 @@ const BoardContent = () => {
       let currentColumn = newColumns.find((c) => c._id === columnId);
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
       currentColumn.cardOrder = currentColumn.cards.map((i) => i._id);
+
+      let currentColumnIndex = newColumns.findIndex((c) => c._id === columnId);
+      newColumns.splice(currentColumnIndex, 1, currentColumn);
+
       dispatch(updateColumnData(newColumns));
 
       if (dropResult.addedIndex !== null && dropResult.removedIndex !== null) {
