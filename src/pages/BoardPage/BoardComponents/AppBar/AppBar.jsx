@@ -9,6 +9,7 @@ import {
   DropdownButton,
   OverlayTrigger,
   Popover,
+  Spinner,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -37,11 +38,15 @@ const AppBar = () => {
     <nav className="navbar-app">
       <div className="navbar-app-left">
         <div className="logo" onClick={() => navigate("/boards")}>
-          <img src={require("assets/New Logo.png")} alt="new logo"/>
+          <img src={require("assets/New Logo.png")} alt="new logo" />
           <h1>RTQLO</h1>
         </div>
         <DropdownButton title="Your boards">
-          {pending && <Loading />}
+          {pending && (
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
           {!pending &&
             boardsData.length > 0 &&
             boardsData.map((b, index) => (

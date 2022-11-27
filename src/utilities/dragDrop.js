@@ -15,5 +15,6 @@ export const applyDrag = (arr, dragResult) => {
   if (addedIndex !== null) {
     result.splice(addedIndex, 0, itemToAdd);
   }
+
   return result;
 };

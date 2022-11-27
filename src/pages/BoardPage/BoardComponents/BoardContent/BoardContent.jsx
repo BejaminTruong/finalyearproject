@@ -73,20 +73,14 @@ const BoardContent = () => {
       currentColumn.cards = applyDrag(currentColumn.cards, dropResult);
       currentColumn.cardOrder = currentColumn.cards.map((i) => i._id);
 
-      let currentColumnIndex = newColumns.findIndex((c) => c._id === columnId);
-      newColumns.splice(currentColumnIndex, 1, currentColumn);
-
-      dispatch(updateColumnData(newColumns));
-
       if (dropResult.addedIndex !== null && dropResult.removedIndex !== null) {
         updateColumn(currentColumn, dispatch);
       } else {
         updateColumn(currentColumn, dispatch);
-
+        
         if (dropResult.addedIndex !== null) {
           let currentCard = _.cloneDeep(dropResult.payload);
           currentCard.columnId = currentColumn._id;
-          // dispatch(updateColumnData(newColumns));
           updateCard(currentCard, dispatch);
         }
       }
