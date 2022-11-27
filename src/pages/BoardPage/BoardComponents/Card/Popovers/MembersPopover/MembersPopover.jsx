@@ -1,5 +1,5 @@
 import { updateCard } from "actions/boardAction";
-import { selectBoard, updateData } from "features/boardSlice";
+import { selectBoard, updateColumnData, updateData } from "features/boardSlice";
 import _ from "lodash";
 import React from "react";
 import { Form } from "react-bootstrap";
@@ -23,10 +23,10 @@ const MembersPopover = ({ card, dispatch }) => {
     const newBoard = _.cloneDeep(boardData);
     newBoard.columns.forEach((column) => {
       column.cards.forEach((card) => {
-        card.members = clonedCard.members;
+        if (card._id === clonedCard._id) card.members = clonedCard.members;
       });
     });
-    dispatch(updateData(newBoard));
+    dispatch(updateColumnData(newBoard.columns));
     updateCard(clonedCard, dispatch);
   };
 
@@ -45,8 +45,9 @@ const MembersPopover = ({ card, dispatch }) => {
               <div className="userbox">{m.name[0].toUpperCase()}</div>
               <p>{m.name}</p>
             </div>
-            {card.members.findIndex((item) => item._id === m._id) !==
-              -1 && <AiOutlineCheck className="icon" />}
+            {card.members.findIndex((item) => item._id === m._id) !== -1 && (
+              <AiOutlineCheck className="icon" />
+            )}
           </div>
         ))}
       </div>

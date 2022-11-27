@@ -103,7 +103,7 @@ const BoardContent = () => {
     toggleNewColumnForm();
   };
 
-  if (!boardData._id) {
+  if (!boardData._id && !boardData.pending) {
     return <div className="not-found">Board not found!</div>;
   }
 

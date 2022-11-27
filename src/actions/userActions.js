@@ -21,21 +21,23 @@ export const register = async (
   dispatch
 ) => {
   dispatch(registrationStart());
-  if (password !== repeated_password) {
-    dispatch(
-      openAlert({
-        message: "Your passwords does not match!",
-        variant: "danger",
-      })
-    );
-  } else {
-    try {
+  try {
+    if (password !== repeated_password) {
+      dispatch(registrationEnd());
+      dispatch(
+        openAlert({
+          message: "Your passwords does not match!",
+          variant: "danger",
+        })
+      );
+    } else {
       await axios.post(`${API_ROOT}/v1/users/register`, {
         name,
         email,
         password,
         repeated_password,
       });
+      dispatch(registrationEnd());
       dispatch(
         openAlert({
           message: "Registered successfully!",
@@ -44,16 +46,16 @@ export const register = async (
           nextRoute: "/login",
         })
       );
-    } catch (error) {
-      dispatch(
-        openAlert({
-          message: error?.response.data.errors,
-          variant: "danger",
-        })
-      );
     }
+  } catch (error) {
+    dispatch(registrationEnd());
+    dispatch(
+      openAlert({
+        message: error?.response.data.errors,
+        variant: "danger",
+      })
+    );
   }
-  dispatch(registrationEnd());
 };
 
 export const login = async ({ email, password }, dispatch) => {

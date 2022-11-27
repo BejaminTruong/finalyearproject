@@ -20,7 +20,7 @@ const Description = ({
   }, [card.description]);
 
   const handleDescriptionSave = () => {
-    if (cardDescription === card.description || cardDescription === "") {
+    if (cardDescription === card.description) {
       return;
     }
     const newCard = { ..._.cloneDeep(card), description: cardDescription };
